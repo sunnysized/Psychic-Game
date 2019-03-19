@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    }
+    
+    html, body{
+        color: black;
+        border-color: black;
+        font-size: 16px;
+        line-height: 30px;
+        font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+        height: 100%;
+    }
+    
+    .container {
+        background-color: black;
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        margin: 0 auto -4em;
+    }
+    
+    header {
+        color: hotpink;
+        font-family: serif;
+        font-weight: bolder;
+    }
+    
+    .whattodo {
+        color: pink;
+        font-family: fantasy;
+    }
+    
+    .readyset {
+        color: rgb(204, 101, 161);
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    
+    #psychic{
+        text-align: left;
+        color: salmon;
+    }
+    
+    #container{
+        width: 100%;
+        max-width: 960px;
+        margin: 0 auto;
+        clear: both;
+    }
+    
+    .footer, .push {
+        height: 4em;
+        text-align: center;
+    }
+    
+    
