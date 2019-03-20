@@ -1,53 +1,61 @@
 //JAVASCRIPT CODE
 
-var choices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-var winnings = 0;
+var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var winner = 0;
 var losses = 0;
-var guesses = 9;
 var guessesLeft = 9;
+var guesses = 9;
 var guessedLetters = [];
 var yetToGuess = null;
-var pcGuess = choices[Math.floor(Math.random() * choices.length)];
+var compGuess = letters[Math.floor(Math.random() * letters.length)];
 var updatingGuesses = function() {
 
+//the "guesses left" to appear on my page
 document.querySelector('#guessesLeft').innerHTML = "Guesses left: " + guessesLeft;
 };
 
-var updatingToGuess = function() {
-    this.yetToGuess = this.choices[Math.floor(Math.random() * this.choices.length)];
+//letters that the player hasn't chosen yet (not to be seen on page)
+var updatingNotGuessedYet = function() {
+    this.yetToGuess = this.letters[Math.floor(Math.random() * this.letters.length)];
 };
 
+//list out the letters the player has already guessed (repeats allowed)
 var soFar = function() {
     document.querySelector('#lettersGuessed').innerHTML = "Your Guesses so far: " + guessedLetters.join(', ');
 };
 
+//after total guesses reaches 9, the game will tell the player whether they won or not and set all values back to 0
+//apart from the "guesses left" feature which will reset to 9
 var reset = function() {
     totalGuesses = 9;
     guessesLeft = 9;
     guessedLetters = [];
-    updatingToGuess();
+    updatingNotGuessedYet();
     updatingGuesses();
     soFar();
 }
 
-updatingToGuess();
+//as player types, update letters guessed and not guessed
+updatingNotGuessedYet();
 updatingGuesses();
     document.onkeyup = function(event) {
     guessesLeft--;
 
+//make all letters guessed lower case
 var whatAreYouGuessing = String.fromCharCode(event.keyCode).toLowerCase();
     guessedLetters.push(whatAreYouGuessing);
     updatingGuesses();
     soFar();
 
+//determine if the player wins or loses, respectively with alert messages
     if (guessesLeft > 0){
 
     if (whatAreYouGuessing == yetToGuess){
-    winnings++;
+    winner++;
 
-    document.querySelector('#winnings').innerHTML = "Wins: " + winnings;
+    document.querySelector('#winner').innerHTML = "Wins: " + winner;
     
-    alert("Yes, you are psychic!");
+    alert("Hey! You ARE psychic! Press OK to play again.");
 
     reset();
     }
@@ -57,7 +65,7 @@ var whatAreYouGuessing = String.fromCharCode(event.keyCode).toLowerCase();
 
     document.querySelector('#losses').innerHTML = "Losses: " + losses;
 
-    alert("Sorry, you're not psychic, maybe try again?");
+    alert("Looks like you're not psychic... Press OK to try again though!");
 
     reset();
 }
